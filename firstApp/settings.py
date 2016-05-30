@@ -31,13 +31,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-]
+    'polls.apps.PollsConfig', # ajouter pour activer le modèle de Poll
+    
+    'django.contrib.admin',#admin site
+    'django.contrib.auth',#authentication system
+    'django.contrib.contenttypes',#framework for content type
+    'django.contrib.sessions',#session framework
+    'django.contrib.messages',#messaging framework
+    'django.contrib.staticfiles',#framework for managing static files
+]# processus de migrations générant les bases de données lancé par console python manage.py migrate
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,8 +78,9 @@ WSGI_APPLICATION = 'firstApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.sqlite3', 
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),# database name
+        # other settings like USER, PASSWORD, HOST....
     }
 }
 
@@ -106,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Paris'#'UTC'
 
 USE_I18N = True
 
