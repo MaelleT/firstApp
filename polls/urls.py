@@ -6,6 +6,10 @@ Created on 30 mai 2016
 from django.conf.urls import url
 
 from . import views
+
+# define namespaces for project with a lot of apps : URL
+
+app_name = 'polls'
 urlpatterns=[
             url(r'^$',views.index,name='index'),
              #ex /polls/5
