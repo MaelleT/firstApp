@@ -1,0 +1,13 @@
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+    	<!-- URL hardcoded : à éviter dans le template. Meiux vaut définir l'url dans le fichier urls -->
+        <!--  <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>-->
+       	
+       	<li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li> <!-- avec le namespace polls: --> 
+        
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
