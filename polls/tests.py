@@ -7,6 +7,8 @@ import datetime
 from django.utils import timezone
 from .models import Question
 from django.test import TestCase
+from django.core.urlresolvers import reverse
+
 
 class TestQuestionMethodFutur(TestCase):
 
@@ -51,3 +53,36 @@ class TestQuestionMethodRecent(TestCase):
         self.assertEqual(self.recent_question.was_published(), True,"Erreur : question with recent pub_date")
         
         
+        
+        
+def create_question(question_text,days):
+    '''
+    Creates a question with the given question_text and published givne number of days
+    '''
+    time=timezone.now()+datetime.timedelta(days=days)
+    return Question.objects.create(question_text=question_text,pub_date=time)
+
+class TestQuestionViewNoQuestions(TestCase):
+    
+    def setUp(self):
+        TestCase.setUp(self)
+        
+    def tearDown(self):
+        TestCase.tearDown(self)
+    
+    def testQuestionView_with_no_questions(self):
+        '''
+        If no questions exist, an appropriate message should be displayed
+        '''
+        response = self.client.get(reverse('polls:index'))
+        self.assertEqual(response.status_code,200)
+        self.assertContains(response,"No polls are available.")
+        self.assertQuerysetEqual(response.context['latest_question_list'], [])
+        
+
+
+
+        
+        
+        
+            

@@ -10,17 +10,20 @@ from django.views import generic
 from django.shortcuts import render, get_object_or_404
 # for each view : all django wants is that HttpResponse. Or an exception.
 from .models import Choice,Question
+from django.utils import timezone
 # Create your views here.
-from datetime import timezone
 
 class IndexView(generic.ListView):
     template_name='polls/index.html'
     context_object_name ='latest_question_list'
     
     def get_queryset(self):
-        """Return the last five published questions"""
-        return Question.objects.order_by('-pub_date')[:5]
-    
+        """Return the last five published questions not including those set in the future"""
+        #before unit test view
+        #return Question.objects.order_by('-pub_date')[:5]
+        return Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
+        
+        
     #Before generic view
     #latest_question_list = Question.objects.order_by('pub_date')[:5]
     
