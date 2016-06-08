@@ -79,8 +79,78 @@ class TestQuestionViewNoQuestions(TestCase):
         self.assertContains(response,"No polls are available.")
         self.assertQuerysetEqual(response.context['latest_question_list'], [])
         
+        
+class TestQuestionViewPastQuestion(TestCase):
+    
+    def setUp(self):
+        TestCase.setUp(self)
+        create_question(question_text="Past Question.", days=-30)
+        
+    def tearDown(self):
+        TestCase.tearDown(self)
+    
+    def testQuestionView_with_past_question(self):
+        '''
+        Question with a pub_date in the past should be displayed on the index page
+        '''
+        response = self.client.get(reverse('polls:index'))
+       
+        self.assertQuerysetEqual(response.context['latest_question_list'], ['<Question: Past Question.>'])
+        
+class TestQuestionViewFutureQuestion(TestCase):
+    
+    def setUp(self):
+        TestCase.setUp(self)
+        create_question(question_text="Future Question.", days=30)
+        
+    def tearDown(self):
+        TestCase.tearDown(self)
+    
+    def testQuestionView_with_future_question(self):
+        '''
+        Question with a pub_date in the past should be displayed on the index page
+        '''
+        response = self.client.get(reverse('polls:index'))
+        self.assertContains(response,"No polls are available.",status_code=200)
 
+        self.assertQuerysetEqual(response.context['latest_question_list'], [])
 
+    
+class TestQuestionViewFutureAndPastQuestion(TestCase):
+    
+    def setUp(self):
+        TestCase.setUp(self)
+        create_question(question_text="Future Question.", days=30)
+        create_question(question_text="Past Question.", days=-30)
+
+    def tearDown(self):
+        TestCase.tearDown(self)
+    
+    def testQuestionView_with_future_and_past_question(self):
+        '''
+        Question with a pub_date in the past should be displayed on the index page
+        '''
+        response = self.client.get(reverse('polls:index'))
+
+        self.assertQuerysetEqual(response.context['latest_question_list'],  ['<Question: Past Question.>'])
+
+class TestQuestionViewWithTwoPastQuestion(TestCase):
+    
+    def setUp(self):
+        TestCase.setUp(self)
+        create_question(question_text="Past Question 1.", days=-40)
+        create_question(question_text="Past Question 2.", days=-30)
+
+    def tearDown(self):
+        TestCase.tearDown(self)
+    
+    def testQuestionView_with_two_past_question(self):
+        '''
+        Question with a pub_date in the past should be displayed on the index page
+        '''
+        response = self.client.get(reverse('polls:index'))
+
+        self.assertQuerysetEqual(response.context['latest_question_list'],  ['<Question: Past Question 2.>','<Question: Past Question 1.>'])
 
         
         
