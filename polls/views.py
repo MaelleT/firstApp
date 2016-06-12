@@ -11,6 +11,9 @@ from django.shortcuts import render, get_object_or_404
 # for each view : all django wants is that HttpResponse. Or an exception.
 from .models import Choice,Question
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import forms
+from django.contrib import auth
 # Create your views here.
 
 class IndexView(generic.ListView):
@@ -41,13 +44,14 @@ class IndexView(generic.ListView):
     #return HttpResponse(output)
     
 
+# decorating the class to restrict access for example.
 
 class TheDetailView(generic.DetailView):
 #def detail(request,question_id):   
     model=Question
     template_name='polls/detail.html'
-    
     def get_object(self):
+        
         return Question.objects.get(pk=self.kwargs.get("question_id"))
     
     #before generic view
@@ -90,6 +94,5 @@ def vote(request,question_id):
         
     # before coding the behaviour
     #return HttpResponse("You are voting on question %s" % question_id)
-
 
 

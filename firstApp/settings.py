@@ -31,10 +31,10 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'polls.apps.PollsConfig', # ajouter pour activer le modèle de Poll
-    
+    'bootstrap3',
     'django.contrib.admin',#admin site
     'django.contrib.auth',#authentication system
-    'django.contrib.contenttypes',#framework for content type
+    'django.contrib.contenttypes',#framework for content type which allows permissions to be associated with models you creat
     'django.contrib.sessions',#session framework
     'django.contrib.messages',#messaging framework
     'django.contrib.staticfiles',#framework for managing static files
@@ -68,6 +68,13 @@ TEMPLATES = [
         },
     },
 ]
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    'polls/templates',
+)
+
 
 WSGI_APPLICATION = 'firstApp.wsgi.application'
 
@@ -122,3 +129,10 @@ DEFAULT_CHARSET = 'utf-8'
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# instead of redirecting after login to the account.profile page
+LOGIN_REDIRECT_URL = '/polls/'
+
+CSRF_COOKIE_DOMAIN = None # after an error on login form
+
+
