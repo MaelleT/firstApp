@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'polls.apps.PollsConfig', # ajouter pour activer le modèle de Poll
+    'newsletter',
     'bootstrap3',
     'django.contrib.admin',#admin site
     'django.contrib.auth',#authentication system
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',#messaging framework
     'django.contrib.staticfiles',#framework for managing static files
 ]# processus de migrations générant les bases de données lancé par console python manage.py migrate
+
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
