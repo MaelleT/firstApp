@@ -3,3 +3,11 @@
 <h1>{{title}}</h1>
 {{user}}
 {{request.user}}
+
+<form method='POST' action =''> <!-- Method POST for sending data -->
+{% csrf_token%} <!-- no error 403 -->
+<!-- {{form}} --> 
+{{form.as_p}} <!-- looks better -->
+<input type="submit" value="Sign Up">
+
+</form>
