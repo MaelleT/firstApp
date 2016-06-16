@@ -6,6 +6,12 @@ Created on 15 juin 2016
 from django import forms
 from .models import SignUp
 
+class ContactForm(forms.Form):
+    # forms.Form : don't need the model
+    full_name=forms.CharField()
+    email=forms.EmailField()
+    message=forms.CharField()
+
 class SignUpForm(forms.ModelForm):
     class Meta :
         model = SignUp
