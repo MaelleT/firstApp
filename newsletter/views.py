@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.http import request
 
 from .forms import ContactForm, SignUpForm
+from django.conf.global_settings import EMAIL_HOST_USER
+from django.core.mail import send_mail
+from firstApp import settings
 # Create yoursviews here.
 def home(request):
     title = "welcome"
@@ -50,7 +53,13 @@ def contact(request):
         for key in form.cleaned_data :
             print (key)
             print (form.cleaned_data.get(key))
-             
+        subject ='Test django email'
+        message = form.cleaned_data.get('message')
+        to_email = [form.cleaned_data.get('email'),settings.EMAIL_HOST_USER]
+        from_email = settings.EMAIL_HOST_USER
+        send_mail(subject,
+                  message,
+                  from_email ,to_email,fail_silently=False) 
         #=======================================================================
         # email = form.cleaned_data.get('email')
         # message = form.cleaned_data.get('message')

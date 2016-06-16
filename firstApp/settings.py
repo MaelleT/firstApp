@@ -27,6 +27,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = "maelle.taurand@gmail.com"
+EMAIL_HOST_PASSWORD="*******" #à modifier 
+EMAIL_PORT=587
+EMAIL_USE_TLS = True
+
+# with gmail
+# https://accounts.google.com/DisplayUnlockCaptcha
+
 # Application definition
 
 INSTALLED_APPS = [
