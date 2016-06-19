@@ -1,5 +1,17 @@
+{% extends "bases.html" %}
+{% block title %} Welcome | {{ block.super }} {% endblock %}
+{% block jumbotron_content %} 
+<!-- Main component for a primary marketing message or call to action -->
+     	<h1>Mon projet </h1>
+        <p>blablbablbalbalabla</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
+        </p>
 
-<h1>Hi there ! </h1>
+{% endblock %}  
+
+{% block content %}  
+
 <h1>{{title}}</h1>
 {{user}}
 {{request.user}}
@@ -11,3 +23,4 @@
 <input type="submit" value="Sign Up">
 
 </form>
+{% endblock %}
