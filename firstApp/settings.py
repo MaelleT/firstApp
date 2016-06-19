@@ -41,7 +41,10 @@ EMAIL_USE_TLS = True
 INSTALLED_APPS = [
     'polls.apps.PollsConfig', # ajouter pour activer le modèle de Poll
     'newsletter',
+    #third_party apps
     'bootstrap3',
+    'crispy_forms',
+    #django app
     'django.contrib.admin',#admin site
     'django.contrib.auth',#authentication system
     'django.contrib.contenttypes',#framework for content type which allows permissions to be associated with models you creat
@@ -155,3 +158,4 @@ LOGIN_REDIRECT_URL = '/polls/'
 
 CSRF_COOKIE_DOMAIN = None # after an error on login form
 
+CRISPY_TEMPLATE_PACK ='bootstrap3'
