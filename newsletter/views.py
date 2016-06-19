@@ -43,7 +43,7 @@ def home(request):
         context = {
             "title" : "Thank you",
                   }
-    return render(request,"home.html",context)
+    return render(request,"bases.html",context)
 
 
 def contact(request):

@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',#framework for content type which allows permissions to be associated with models you creat
     'django.contrib.sessions',#session framework
     'django.contrib.messages',#messaging framework
-    'django.contrib.staticfiles',#framework for managing static files
+    'django.contrib.staticfiles',# a framework for managing static files
 ]# processus de migrations générant les bases de données lancé par console python manage.py migrate
 
 
@@ -138,12 +138,20 @@ DEFAULT_CHARSET = 'utf-8'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-
+# to serve static files
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static","static_root")
+
+#define a list of directories in your settings file where Django will also look for static files.
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static","our_static"),
+    #'/var/www/static/',
+]
+
 
 # instead of redirecting after login to the account.profile page
 LOGIN_REDIRECT_URL = '/polls/'
 
 CSRF_COOKIE_DOMAIN = None # after an error on login form
-
 
