@@ -43,7 +43,7 @@ def home(request):
         context = {
             "title" : "Thank you",
                   }
-    return render(request,"example_fluid.html",context)
+    return render(request,"home.html",context)
 
 
 def contact(request):
@@ -69,5 +69,5 @@ def contact(request):
     return render(request,"forms.html",context)
 
 
-
-
+def about(request):
+    return render(request,"about.html",{})
