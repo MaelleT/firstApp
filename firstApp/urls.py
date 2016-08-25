@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
+import newsletter.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^polls/', include('polls.urls')),
+    #url(r'^newsletter/home/$',newsletter.views.home,name='home'),
+
     url(r'^newsletter/',include('newsletter.urls'))
 ]
